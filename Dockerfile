@@ -1,17 +1,17 @@
-# Utiliser une image Python comme base
-FROM python:3.11
+# Use an official Python runtime as a parent image
+FROM python:3.10.9
 
-# Définir le répertoire de travail dans le conteneur
+# Set the working directory
 WORKDIR /app
 
-# Copier le fichier requirements.txt dans le répertoire de travail
-COPY requirements.txt .
+# Copy the current directory contents into the container at /app
+COPY . /app
 
-# Installer les dépendances
+# Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copier tout le contenu du répertoire courant dans le répertoire de travail du conteneur
-COPY . .
+# Expose port 8501 for streamlit
+EXPOSE 8501
 
-# Spécifier la commande par défaut pour exécuter l'application Streamlit
-CMD ["streamlit", "run", "appli.py"]
+# Run the streamlit app
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.enableCORS=false"]

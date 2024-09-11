@@ -6,3 +6,4 @@ streamlit
 joblib
 numpy
 pandas
+streamlit
