@@ -291,7 +291,7 @@ if __name__ == "__main__":
             metrics = evaluate_model(model, X_test, y_test)
 
             # Log metrics to MLflow during evaluation
-            with mlflow.start_run(run_name="Evaluation"):
+            with mlflow.start_run(run_name="Xgboost Eval"): 
                 for key, value in metrics.items():
                     if key != "confusion_matrix":
                         mlflow.log_metric(key, value)
